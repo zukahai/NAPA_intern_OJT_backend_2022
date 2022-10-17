@@ -1,9 +1,9 @@
 # Câu hỏi JavaScript căn bản
 
 ## Mục lục
-* [Câu 1. Delay setTimeout](#câu-1-phân-biệt-settimeout-và-setinterval)
-* [Câu 2. Tối ưu 20 sự kiện bất đồng bộ]()
-* [Câu 3. Callback hell là gì?]
+* [Câu 1. Delay setTimeout](#câu-1-delay-settimeout)
+* [Câu 2. Tối ưu 20 sự kiện bất đồng bộ](#câu-2-tối-ưu-20-sự-kiện-bất-đồng-bộ)
+* [Câu 3. Vấn đề của event loop]
 * [Câu 4. Promise hell là gì?]
 * [Câu 5. Phân biệt let và const, trường hợp Object thì làm thế nào?]
 * [Câu 6. Sự khác nhau giữa forEach, filter, every, some, reduce, for thường]
@@ -71,4 +71,35 @@ for (let i = 0; i < 4; i++) {
         console.log(result);
     });
 }
+```
+
+### Câu 3. Vấn đề của event loop
+```JavaScript
+const controller = async (req, res) => {
+    +) func doA là đồng bộ, thời gian thực thi 10s
+    doA();
+ 
+    +)func doB là bất đồng bộ, thời gian thực thi là 1s
+    +) là một lời gọi IO, chẳng hạn như truy vấn database
+    await doB();
+    res.status(200).end();
+}
+```
+Hàm await  sẽ được đẩy vào hàng đợi của event loop
+- Request đầu tiên sẽ chạy trong 11 giây do chạy doA() hết 10 giây và chờ 1 giây await chạy doB() trong hàng đợi
+- Có 3 Request nên hàm await cuối phần chờ await của 2 request đó chạy nữa, thời gian là:
+	- 10 giây của doA()
+	- 2 giây chờ hàng đợi
+	- 1 giây doB()
+- Tương tự request thứ 2 sẽ thực hiện trong 12 giây, trung bình 3 request thực hiện trong (11 + 12 + 13) / 3 = 12 giây
+
+Cách giải quyết:
+```JavaScript
+const controller = async (req, res) => {
+    new Promise((resolve) => {
+        doA();
+        resolve();
+    });
+    await doB();
+};
 ```
