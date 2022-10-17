@@ -1,10 +1,11 @@
-# Câu hỏi JavaScript căn bản
+# Bài tập JavaScript nâng cao
 
 ## Mục lục
 * [Câu 1. Delay setTimeout](#câu-1-delay-settimeout)
 * [Câu 2. Tối ưu 20 sự kiện bất đồng bộ](#câu-2-tối-ưu-20-sự-kiện-bất-đồng-bộ)
-* [Câu 3. Vấn đề của event loop]
-* [Câu 4. Cải thiện performance]
+* [Câu 3. Vấn đề của event loop](#câu-3-vấn-đề-của-event-loop)
+* [Câu 4. Cải thiện performance](#câu-4-cải-thiện-performance)
+* [Câu 5. For thường và forEach](#câu-5-khác-nhau-giữa-for-thường-và-foreach)
 
 ## Câu trả lời
 
