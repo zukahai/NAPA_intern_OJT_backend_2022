@@ -4,12 +4,7 @@
 * [Câu 1. Delay setTimeout](#câu-1-delay-settimeout)
 * [Câu 2. Tối ưu 20 sự kiện bất đồng bộ](#câu-2-tối-ưu-20-sự-kiện-bất-đồng-bộ)
 * [Câu 3. Vấn đề của event loop]
-* [Câu 4. Promise hell là gì?]
-* [Câu 5. Phân biệt let và const, trường hợp Object thì làm thế nào?]
-* [Câu 6. Sự khác nhau giữa forEach, filter, every, some, reduce, for thường]
-* [Câu 7. Các phương pháp clone object]
-* [Câu 8. Phân biệt giá trị và địa chỉ của biến]
-* [Câu 9. JavaScript có bao nhiêu kiểu giữ liệu]
+* [Câu 4. Cải thiện performance]
 
 ## Câu trả lời
 
@@ -103,3 +98,68 @@ const controller = async (req, res) => {
     await doB();
 };
 ```
+
+### Câu 4. Cải thiện performance
+
+```JavaScript
+const waitBlocking = (milisecond) => {
+    const startTime = new Date().getTime();
+    while(new Date().getTime() < startTime + milisecond);
+}
+
+const waitNonBlocking = (milisecond) => {
+    return new Promise(resolve => setTimeout(() => resolve()), milisecond);
+}
+
+const controller1 = async (req, res) => {
+    await waitNonBlocking(10000);
+    res.status(200).end();
+}
+
+const controller2 = (req, res) => {
+    waitBlocking(10000)
+    res.status(200).end();
+}
+```
+- Thời gian thực hiện controller1 và controller2 đều là 10 giây.
+- Phần cải thiện: Xin phép nhờ mentor giải đáp.
+
+### Câu 5. Khác nhau giữa for thường và forEach
+-  Về bản chất thì for thường giống như phép lặp while, ví dụ trong một mảng thì for thường sẽ chỉ kiểm soát chỉ số của mảng, từ chỉ số đó mới truy cập đến giá trị phần tử, còn forEach nó lặp giống như một danh sách liên kết, phần tử này sẽ nối phần tử kia.
+-  Khác nhau về cách thực hiện:
+	- Vòng for thường: thực hiện theo thứ tự từng bước, từng lần lặp
+	```JavaScript
+		for (let i = 0; i < 10; i++) {
+			console.log(i);
+		}
+		// 0 1 2 3 4 5 6 7 8 9 10
+	```
+	- forEach: thực hiện chạy lần lượt các giá trị
+	```JavaScript
+		const arr = [1, 2, 3, 4, 5]
+		arr.forEach((item) => {
+			console.log(item);
+		});
+		// 1 2 3 4 5
+	```
+- Dừng vòng lặp
+	- Vòng for thường: dùng lệnh break
+	```JavaScript
+		for (let i = 0; i < 10; i++) {
+			if (i > 3)
+				break;
+			console.log(i);
+		}
+		// 0 1 2 3
+	```
+	- Vòng forEach: dùng return
+	```JavaScript
+		const arr = [1, 2, 3, 4, 5]
+		arr.forEach((item) => {
+			if (item > 3)
+				return;
+			console.log(item);
+		});
+		// 1 2 3
+	```
+		
