@@ -1,7 +1,7 @@
 # Câu hỏi JavaScript căn bản
 
 ## Mục lục
-* [Câu 1. Phân biệt settimeout và setinterval](#ex1)
+* [Câu 1. Phân biệt settimeout và setinterval](#câu-1-phân-biệt-settimeout-và-setinterval)
 * [Câu 2. Phân biệt callback, promise, async await]()
 * [Câu 3. Callback hell là gì?]
 * [Câu 4. Promise hell là gì?]
@@ -21,3 +21,24 @@
 
 ### Câu 1. Phân biệt settimeout và setinterval
 -	Hàm setTimeout() thường được sử dụng khi mình muốn thực hiện method sau khoảng thời gian nào đó (mili giây)
+    ```JavaScript
+    setTimeout ( expression, timeout );
+    ```
+    Ví dụ khi load trang thì sau 1000 mili giây sẽ in ra chữ “Hello”
+    ```JavaScript
+    setTimeout(() => {
+      console.log("Hello")
+    }, 1000);
+    ```
+-	Hàm setinterval sẽ dùng khi mình muốn thực hiện method liên tục sau khoảng thời gian chờ nào đó.
+    ```JavaScript
+    setInterval ( expression, time );
+    ```
+    Như cú pháp trên thì expression sẽ được thực hiện sau mỗi time (mili giây)
+    ```JavaScript
+      setInterval(() => {
+          console.log("Bye")
+      }, 2000)
+    ```
+    Ví dụ sao khi load trang 2 giây sẽ in ra chữ “Bye”, và cứ sau 2 giây lại in ra chữ “Bye”.
+    
