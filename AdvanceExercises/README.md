@@ -6,6 +6,7 @@
 * [Câu 3. Vấn đề của event loop](#câu-3-vấn-đề-của-event-loop)
 * [Câu 4. Cải thiện performance](#câu-4-cải-thiện-performance)
 * [Câu 5. For thường và forEach](#câu-5-khác-nhau-giữa-for-thường-và-foreach)
+* [Câu 6. Các cách clone object](#câu-5-khác-nhau-giữa-for-thường-và-foreach)
 
 ## Câu trả lời
 
@@ -163,4 +164,40 @@ const controller2 = (req, res) => {
 		});
 		// 1 2 3
 	```
-		
+### Câu 6. Các cách clone Object
+- Một số phương pháp clone object
+	- Gán cả Object
+		```JavaScript
+			const obj1 = {
+				name: 'Nguyen Van A',
+				age: 20,
+			};
+
+			const obj2 =obj1
+			obj1.name = "Nguyen Van B"
+			console.log(obj2); //Object{name: 'Nguyen Van B', age: 20}
+		```
+	- Gán thuộc tính
+		Gán hết các thuộc tính của obj cần copy qua object mới
+		```JavaScript
+			const obj1 = {
+				name: 'Nguyen Van A',
+				age: 20,
+			};
+			const obj2 = {}
+			obj2.name = obj1.name
+			obj2.age = obj1.age
+			obj1.name = "Nguyen Van B"
+			console.log(obj2); //Object{name: 'Nguyen Van A', age: 20}
+		```
+	- Sử dụng Object.assign()
+		```JavaScript
+			const obj1 = {
+				name: 'Nguyen Van A',
+				age: 20,
+			};
+			const obj2 = Object.assign({}, obj1);
+			console.log(obj2); //Object{name: 'Nguyen Van A', age: 20}
+		```
+- Shallow clone trên thực tế thì nó chỉ gán giá trị của địa chỉ trong object đó, nghĩa là khi object mà nó clone thay đổi thì nó cũng thay đổi theo.
+- Nếu để clone ra một object hoàn toàn không liên quan đến object cũ thì nên cũng deep clone, vẫn nhiều trường hợp mình vẫn muốn dùng shallow clone thuận tiên cho mục đích của bài toàn
