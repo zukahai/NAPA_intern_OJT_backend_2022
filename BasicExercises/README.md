@@ -1,4 +1,4 @@
-# Câu hỏi JavaScript căn bản
+# <p align="center">Câu hỏi và bài tập JavaScript căn bản</p>
 
 ## Mục lục
 * [Câu 1. Phân biệt settimeout và setinterval](#câu-1-phân-biệt-settimeout-và-setinterval)
