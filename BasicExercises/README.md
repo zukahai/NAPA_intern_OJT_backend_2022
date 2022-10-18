@@ -231,3 +231,4 @@ Callback thường được sử dụng nhiều trong Jquery: <br>
 
 	console.log("obj_2", obj_2); // {username: "HaiZuka", getUsername: ƒ}
  ```
+999999
