@@ -6,7 +6,8 @@
 * [Câu 3. Vấn đề của event loop](#câu-3-vấn-đề-của-event-loop)
 * [Câu 4. Cải thiện performance](#câu-4-cải-thiện-performance)
 * [Câu 5. For thường và forEach](#câu-5-khác-nhau-giữa-for-thường-và-foreach)
-* [Câu 6. Các cách clone object](#câu-5-khác-nhau-giữa-for-thường-và-foreach)
+* [Câu 6. Các cách clone object](#câu-6-các-cách-clone-object)
+* [Câu 7. Thay thế forEach](#câu-5-khác-nhau-giữa-for-thường-và-foreach)
 
 ## Câu trả lời
 
@@ -201,3 +202,15 @@ const controller2 = (req, res) => {
 		```
 - Shallow clone trên thực tế thì nó chỉ gán giá trị của địa chỉ trong object đó, nghĩa là khi object mà nó clone thay đổi thì nó cũng thay đổi theo.
 - Nếu để clone ra một object hoàn toàn không liên quan đến object cũ thì nên cũng deep clone, vẫn nhiều trường hợp mình vẫn muốn dùng shallow clone thuận tiên cho mục đích của bài toàn
+
+### Câu 7. Thay thế forEach
+```JavaScript
+	const controller = (req, res) => {
+		const array = Array.from((Array(1000000).keys()))
+		array.forEach(item => {
+			console.log(item)
+		})
+		res.status(200).end();
+	}
+```
+Các tác vụ xử lí các phần tử có thể không giống nhau nên sẽ có request nhanh hơn, request chậm hơn, để mà 3 request cùng phản hồi cùng một lúc ta phải đặt thời gian cho cho request (Có thể sử dụng setInterval hoặc setTimeout)
