@@ -77,9 +77,7 @@ Callback thường được sử dụng nhiều trong Jquery: <br>
 			console.error(err)
 	})
     ```
-    
-
-	Hãy phân tích đoạn code trên: <br>
+	Phân tích đoạn code trên: <br>
 	Một promise được khởi tạo với một function có câu lệnh resolve hoặc reject.
 	Đặt đoạn code bất đồng bộ trong function Promise resolve khi mọi thứ xảy ra như mong muốn Nếu không thì reject
 	Khi resolve được chạy thì đoạn code trong .then sẽ thực thi Khi reject được chạy thì .catch sẽ được trigger <br><br>
@@ -218,17 +216,318 @@ Callback thường được sử dụng nhiều trong Jquery: <br>
 ### Câu 7. Các phương pháp clone object
 - Sử dụng Spread (nhóm Shallow Copy):<br>
 	```JavaScript
+		const obj_1 = {
+			username: "HaiZuka",
+			getUsername() {
+			return this.username;
+			}
+		};
+
+		const obj_2 = {...obj_1 };
+
+		obj_1.username = "10";
+
+		console.log("obj_2", obj_2); // {username: "HaiZuka", getUsername: ƒ}
+	 ```
+- Sử dụng Object.assign() (nhóm Shallow Copy):
+	```JavaScript
 	const obj_1 = {
-	    username: "HaiZuka",
-	    getUsername() {
-		return this.username;
-	    }
+		username: "chamdev.com",
+		info: {
+			address: "https://chamdev.com"
+		},
+		getUsername() {
+			return this.username;
+		}
 	};
 
-	const obj_2 = {...obj_1 };
+	const obj_3 = Object.assign({}, obj_1);
 
-	obj_1.username = "10";
+	obj_1.age = 10;
 
-	console.log("obj_2", obj_2); // {username: "HaiZuka", getUsername: ƒ}
- ```
-999999
+	console.log("obj_2", obj_3); // {username: "haizuka.com", info: {address: "https://haizuka.com"}, getUsername: ƒ}
+	```
+ - Sử dụng phương thức JSON (nhóm Deep Clone)
+	```JavaScript
+	const obj_1 = {
+		username: "haizuka.com",
+		info: {
+			address: "https://haizuka.com"
+		},
+		getUsername() {
+			return this.username;
+		}
+	};
+
+	const obj_4 = JSON.parse(JSON.stringify(obj_1));
+
+	obj_1.age = 10;
+
+	console.log("obj_4", obj_4); // {username: "haizuka.com", info: {address: "https://haizuka.com"}}
+	```
+ - Sử dụng thư viện bên thứ 3 – Lodash (nhóm Deep Clone)
+	```JavaScript
+	const _ = require("lodash");
+
+	const obj_1 = {
+		username: "haizuka.com",
+		info: {
+			address: "https://haizuka.com"
+		},
+		getUsername() {
+			return this.username;
+		}
+	};
+
+	const obj_5 = _.cloneDeep(obj_1);
+	const obj_6 = _.clone(obj_1);
+
+	obj_1.age = 10;
+	obj_1.info.address = "Not found";
+
+	console.log("obj_5", obj_5); // {username: "haizuka.com", info: {address: "https://haizuka.com"}, getUsername: ƒ}
+	console.log("obj_6", obj_6; // {username: "haizuka.com", info: {address: "Not found"}, getUsername: ƒ}
+	```
+### Câu 8. Phân biệt giá trị và địa chỉ của biến
+- Địa chỉ dùng để chỉ vùng nhớ, nơi lưu trữ giá trị của biến, từ địa chỉ ta có thể thay đổi giá trị của biến đó, và địa chỉ này là duy nhất.
+- Giá trị của biến là một con số, một chuỗi,… là thứ quan trọng nhất của biến, mình có thể thay đổi giá trị bằng nhiều cách, trong đó có thể dùng cách tác động lên địa chỉ của biến đó.
+### Câu 9. JavaScript có bao nhiêu kiểu giữ liệu
+JavaScript có 8 kiểu dữ liệu cơ bản
+1.	Kiểu dữ liệu boolean (kiểu logic) <br>
+		```JavaScript
+		let isWebLoaded = true; // => Trang web đã được tải xong
+		console.log(isWebLoaded); // true
+
+		let isProgramRunning = false; // Chương trình đang không chạy
+		console.log(isProgramRunning); // false
+		```
+2.	Kiểu dữ liệu null
+		```JavaScript
+		let language = null;
+		console.log(language); // null
+		```
+3.	Kiểu dữ liệu undefined
+		```JavaScript
+		let language2 = undefined;
+		console.log(language2); // undefined
+		let language3;
+		console.log(language3); // undefined
+		```
+4.	Kiểu dữ liệu number
+		```JavaScript
+		let n1 = 66; // số nguyên dương
+		let n2 = -66; // số nguyên âm
+		let n3 = 3.14; // số thực dương
+		let n4 = -3.14; // số thực âm
+		let n5 = 2e3; // => 2*10^3 = 2000
+		let n6 = 2e-3; // => 2*10^(-3) = 0.002
+		let n7 = 0xff; // số dạng hexa (hệ cơ số 16): 15*16 + 15 = 255
+		let n8 = 067; // số dạng octa (hệ cơ số 8): 6*8 + 7 = 55
+		let n9 = 0b11; // số dạng nhị phân (hệ cơ số 2): 1*2 + 1 = 3
+		```
+5.	Kiểu dữ liệu BigInt <br>
+	Trong JavaScript, kiểu dữ liệu number không thể biểu diễn một số nguyên lớn hơn (2^53-1) (bằng 9007199254740991) và nhỏ hơn -(2^53-1).
+	Với hầu hết các trường hợp, việc sử dụng kiểu dữ liệu number là quá đủ. Nhưng đôi khi, bạn vẫn cần biểu diễn và tính toán với những số nguyên cực kỳ lớn. Do đó, kiểu dữ liệu BigInt ra đời nhằm giải quyết vấn đề này.
+	Để biểu diễn số nguyên với kiểu BigInt
+
+		```JavaScript
+		const reallyBigNumber = 12345678987654321012345678987654321n;
+		console.log(reallyBigNumber); // 12345678987654321012345678987654321n
+		```
+6.	Kiểu dữ liệu string
+		```JavaScript
+		const msg1 = 'Đây là string dùng dấu nháy đơn';
+		const msg2 = "Đây là string dùng dấu nháy kép";
+		const msg3 = `Đây là string dùng dấu backtick`;
+		const msg4 = '1 + 2 = ${1 + 2}';
+		```
+7.	Kiểu dữ liệu symbol <br>
+		Symbol là một kiểu dữ liệu nguyên thủy dùng để tạo ra các giá trị duy nhất (unique value) và bất biến (immutable). Symbol thường được dùng làm key cho kiểu dữ liệu object sau đây.
+		
+8.	Kiểu dữ liệu object <br>
+		Object là kiểu dữ liệu tham chiếu. Có thể hiểu object là một tập hợp gồm các cặp key - value (khóa - giá trị).
+		
+### Câu 10. Làm thế nào để kiểm trả object có empty hay không?
+Để kiểm tra object là empty trong ES6, mình sử dụng phương thức Object.keys(). Phương thức này trả về một mảng chứa tất cả các thuộc tính enumerable của object.
+Nếu kết quả trả về là mảng rỗng thì suy ra object đó không chứa thuộc tính enumerable nào.
+Ví dụ sử dụng Object.keys():
+
+```JavaScript
+const a = {},
+b = { x: 1 },
+c = { m: "a", n: "b" };
+
+console.log(Object.keys(a)); // []
+console.log(Object.keys(b)); // ["x"]
+console.log(Object.keys(c)); // ["m", "n"]
+```
+Mình có thể viết hàm kiểm tra object có empty hay không như sau:
+```JavaScript
+const isEmpty = (v) => {
+    return Object.keys(v).length === 0;
+};
+```
+
+### Câu 11. Các phương pháp để nối hai mảng
+- Dùng hàm push <br>
+	Thêm lần lượt các phần tử mảng kia và mảng cần ghép.
+	```JavaScript
+	const array1 = [1, 2, 3];
+	const array2 = [4, 5, 6];
+
+	for (const element of array2) {
+		array1.push(element);
+	}
+	```
+	Có thể dùng spread thay vì vòng for
+	```JavaScript
+	array1.push(...array2);
+	```
+- Sử dụng hàm concat
+	```JavaScript
+	const num1 = [1, 2, 3];
+	const num2 = [4, 5, 6];
+	const num3 = [7, 8, 9];
+
+	const numbers = num1.concat(num2, num3);
+
+	console.log(numbers);
+	// results in [1, 2, 3, 4, 5, 6, 7, 8, 9]
+	```
+- Sử dụng spread
+	```JavaScript
+	const concatenated = [...array1, ...array2];
+	```
+	
+### Câu 12. Arrow fuction là gì, so sánh arrow funtion và express function
+Arrow function hoạt động tương tự như Lambdas trong các ngôn ngữ khác như C # hay Python. Bằng cách sử dụng arrow function, chúng ta tránh được việc phải gõ từ khoá function, return và dấu ngoặc nhọn.
+```JavaScript
+// ES5 
+var multiply = function(x, y) {
+	return x * y;
+}; 
+ 
+// ES6 
+var multiply = (x, y) => { return x * y };
+```
+Arrow function thường ngắn gọn hơn function
+Với hàm số có 1 tham số, arrow function có thể bỏ qua cặp dấu ngoặc đơn.
+```JavaScript
+// Sử dụng arrow function
+let greeting = name => {
+    console.log(`Hello, my name is ${name}`);
+}
+greeting("Hai");
+// => Hello, my name is Hai
+```
+Sử dụng map với arrow function:
+```JavaScript
+let arr = [1, 2, 3, 4];
+let square2 = arr.map(e => e * e);
+console.log(square2); // => [1, 4, 9, 16]
+```
+Arrow function không phù hợp làm method cho object
+Chính vì arrow function không định nghĩa giá trị this của riêng nó, nên cũng không phù hợp là method cho object.
+```JavaScript
+let obj = {
+    a: 1,
+    b: () => console.log(this.a, this),
+    c: function() {
+        console.log(this.a, this);
+    }
+}
+
+obj.b(); // prints undefined, Window {...} (or the global object)
+obj.c(); // prints 1, Object {...}
+```
+
+### Câu 13. Spread operator dùng để làm gì?
+Spread operator có cú pháp giống với rest paraterter tuy nhiên cả hai có ý nghĩa khác nhau. Rest paramter được sử dụng khi khai báo hàm, ngược lại spread operator được sử dụng trong các câu lệnh, biểu thức hoặc khi gọi hàm.
+
+ES6 cung cấp một toán tử mới gọi là spread operator bao gồm ba dấu chấm (...). Spread operator cho phép bạn trải ra các phần tử của một đối tượng có thể lặp lại, chẳng hạn như một array, map hoặc set.
+
+Trước khi ES6 được ra đời thì cách phổ biến để nối mảng là sử dụng phương thức concat() của một mảng với đối số truyền vào là những mảng khác sẽ được nối với mảng này: VD:
+```JavaScript
+var arr_1 = [1, 2, 3];
+var arr_2 = [4, 5, 6];
+
+arr_3 = arr_1.concat(arr_2);
+console.log(arr_3); //  [1, 2, 3, 4, 5, 6]
+```
+Phía dưới là dùng spread operator
+```JavaScript
+const arr_1 = [1,3,5];
+const arr_2 = [2,4,6, ...odd];
+console.log(arr_2); // [ 2, 4, 6, 1, 3, 5 ]
+```
+
+### Câu 14. Con trỏ this là gì, phân biệt call, bind, apply
+This đại diện cho đối tượng trong hàm, class, object
+Khi thực thi fuction đó, nó sẽ có Property thischứa item của 1 Object đang gọi tới function này.
+Ví dụ trong object:
+
+```JavaScript
+const Person = {
+    ho: 'Phan',
+    ten: 'Hai',
+    ghepHoTen: function() {
+        console.log('Họ và tên', this.ho + " " + this.ten);
+    }
+}
+Person.ghepHoTen();
+```
+Call và apply có vẻ rất giống nhau---đều gọi 1 function với 1 giá trị this xác định mà mình gán cho, cùng với những arguments. Điều khác nhau duy nhất giữa 2 method này đó là arguments truyền vào call sẽ được đọc từng giá trị một, trong khi arguments truyền vào apply là 1 array
+```JavaScript
+function longerSummary(genre, year) {
+    console.log(
+        `${this.title} was written by ${this.author}. It is a ${genre} novel written in ${year}.`
+    )
+}
+
+longerSummary.call(book, 'dystopian', 1932); //"Brave New World was written by Aldous Huxley. It is a dystopian novel written in 1932."
+longerSummary.apply(book, 'dystopian', 1932); //Uncaught TypeError: CreateListFromArrayLike called on non-object at <anonymous>:1:15
+```
+Hai method apply() và call() đều là 2 method gọi 1 lần. Tức là chỉ khi gọi 2 hàm này thì giá trị của this mới được gán mới, còn bản chất function đó không hề thay đổi chút nào. Tuy nhiên, đôi khi sẽ có lúc chúng ta muốn sử dụng 1 method nào đó nhiều lần trong code với this của method đó sẽ do bạn gán. thì lúc đó cần sử dụng bind() để tạo ra 1 function mới thỏa mãn yêu cầu trên.
+```JavaScript
+const braveNewWorldSummary = summary.bind(book)
+
+braveNewWorldSummary() //"Brave New World was written by Aldous Huxley"
+```
+
+### Câu 15. NodeJS là single thread hay multiple thread?
+NodeJS là single thread. <br>
+NodeJS sẽ thực thi chỉ theo một luồng.
+```JavaScript
+const http = require('http')
+function wait(millisec) {
+    var now = new Date;
+    while (new Date - now <= millisec) ;
+}
+http.createServer((req, res)=> {
+    if (req.url === '/') {
+        res.writeHead(200, {"Content-Type": 'text/html'});
+        res.write('hello')
+        res.end()
+    }
+    if (req.url === '/wait') {
+        wait(5000)
+        console.log('wait');
+        res.writeHead(200, {"Content-Type": 'text/html'});
+        res.write('Done>>>wait')
+        res.end()
+    }
+    if (req.url === '/timeout') {
+        setTimeout(()=> {
+            res.writeHead(200, {"Content-Type": 'text/html'});
+            res.write('Done>>>timeout')
+            res.end()
+        }, 5000)
+        console.log('timeout');
+    }
+}).listen(3000, "127.0.0.1", function() {
+    console.log('server start at http://127.0.0.1:3000')
+})
+```
+Sau chạy server và chạy http://localhost:3000 lập tức in ra chữ “hello”.
+Những nếu ta chạy lại và chạy http://localhost:3000/wait thì sẽ phải chờ 5 giây bởi hàm wait(), cùng lúc đó ta vào http://localhost:3000 thì nó vẫn loading do luồng nó đang chạy đang xử lí ở hàm wait(), chứng tỏ NodeJS là single thread.
+
