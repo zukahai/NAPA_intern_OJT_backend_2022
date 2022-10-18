@@ -9,7 +9,7 @@
 * [Câu 6. Sự khác nhau giữa forEach, filter, every, some, reduce, for thường](#câu-6-sự-khác-nhau-giữa-foreach-filter-every-some-reduce-for-thường)
 * [Câu 7. Các phương pháp clone object](#câu-7-các-phương-pháp-clone-object)
 * [Câu 8. Phân biệt giá trị và địa chỉ của biến](#câu-8-phân-biệt-giá-trị-và-địa-chỉ-của-biến)
-* [Câu 9. JavaScript có bao nhiêu kiểu giữ liệu]()
+* [Câu 9. JavaScript có bao nhiêu kiểu giữ liệu](#câu-9-javascript-có-bao-nhiêu-kiểu-giữ-liệu)
 * [Câu 10. Làm thế nào để kiểm trả object có empty hay không?](#câu-10-làm-thế-nào-để-kiểm-trả-object-có-empty-hay-không)
 * [Câu 11. Các phương pháp để nối hai mảng](#câu-11-các-phương-pháp-để-nối-hai-mảng)
 * [Câu 12. Arrow fuction là gì, so sánh arrow funtion và express function](#câu-12-arrow-fuction-là-gì-so-sánh-arrow-funtion-và-express-function)
