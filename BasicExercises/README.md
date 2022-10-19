@@ -290,6 +290,9 @@ Callback thường được sử dụng nhiều trong Jquery: <br>
 	```
 ### Câu 8. Phân biệt giá trị và địa chỉ của biến
 - Địa chỉ dùng để chỉ vùng nhớ, nơi lưu trữ giá trị của biến, từ địa chỉ ta có thể thay đổi giá trị của biến đó, và địa chỉ này là duy nhất.
+<div align = "center">
+  <img align="center" src= "https://github.com/zukahai/HaiZuka/blob/master/Images/Picture2.png" />
+</div>
 - Giá trị của biến là một con số, một chuỗi,… là thứ quan trọng nhất của biến, mình có thể thay đổi giá trị bằng nhiều cách, trong đó có thể dùng cách tác động lên địa chỉ của biến đó.
 ### Câu 9. JavaScript có bao nhiêu kiểu giữ liệu
 JavaScript có 8 kiểu dữ liệu cơ bản
@@ -496,7 +499,11 @@ braveNewWorldSummary() //"Brave New World was written by Aldous Huxley"
 
 ### Câu 15. NodeJS là single thread hay multiple thread?
 NodeJS là single thread. <br>
+<div align = "center">
+  <img align="center" src= "https://github.com/zukahai/HaiZuka/blob/master/Images/Picture1.png" />
+</div>
 NodeJS sẽ thực thi chỉ theo một luồng.
+
 ```JavaScript
 const http = require('http')
 function wait(millisec) {
