@@ -224,7 +224,6 @@ Callback thường được sử dụng nhiều trong Jquery: <br>
  ```
 
 
-
 	Hãy phân tích đoạn code trên: <br>
 	Một promise được khởi tạo với một function có câu lệnh resolve hoặc reject.
 	Đặt đoạn code bất đồng bộ trong function Promise resolve khi mọi thứ xảy ra như mong muốn Nếu không thì reject
