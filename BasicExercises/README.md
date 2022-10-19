@@ -294,54 +294,53 @@ Callback thường được sử dụng nhiều trong Jquery: <br>
 
 ### Câu 9. JavaScript có bao nhiêu kiểu giữ liệu
 JavaScript có 8 kiểu dữ liệu cơ bản
-1.	Kiểu dữ liệu boolean (kiểu logic) <br>
-		```JavaScript
-		let isWebLoaded = true; // => Trang web đã được tải xong
-		console.log(isWebLoaded); // true
+1.	Kiểu dữ liệu boolean (kiểu logic)
+	```JavaScript
+	let isWebLoaded = true; // => Trang web đã được tải xong
+	console.log(isWebLoaded); // true
 
-		let isProgramRunning = false; // Chương trình đang không chạy
-		console.log(isProgramRunning); // false
-		```
+	let isProgramRunning = false; // Chương trình đang không chạy
+	console.log(isProgramRunning); // false
+	```
 2.	Kiểu dữ liệu null
-		```JavaScript
-		let language = null;
-		console.log(language); // null
-		```
+	```JavaScript
+	let language = null;
+	console.log(language); // null
+	```
 3.	Kiểu dữ liệu undefined
-		```JavaScript
-		let language2 = undefined;
-		console.log(language2); // undefined
-		let language3;
-		console.log(language3); // undefined
-		```
+	```JavaScript
+	let language2 = undefined;
+	console.log(language2); // undefined
+	let language3;
+	console.log(language3); // undefined
+	```
 4.	Kiểu dữ liệu number
-		```JavaScript
-		let n1 = 66; // số nguyên dương
-		let n2 = -66; // số nguyên âm
-		let n3 = 3.14; // số thực dương
-		let n4 = -3.14; // số thực âm
-		let n5 = 2e3; // => 2*10^3 = 2000
-		let n6 = 2e-3; // => 2*10^(-3) = 0.002
-		let n7 = 0xff; // số dạng hexa (hệ cơ số 16): 15*16 + 15 = 255
-		let n8 = 067; // số dạng octa (hệ cơ số 8): 6*8 + 7 = 55
-		let n9 = 0b11; // số dạng nhị phân (hệ cơ số 2): 1*2 + 1 = 3
-		```
+	```JavaScript
+	let n1 = 66; // số nguyên dương
+	let n2 = -66; // số nguyên âm
+	let n3 = 3.14; // số thực dương
+	let n4 = -3.14; // số thực âm
+	let n5 = 2e3; // => 2*10^3 = 2000
+	let n6 = 2e-3; // => 2*10^(-3) = 0.002
+	let n7 = 0xff; // số dạng hexa (hệ cơ số 16): 15*16 + 15 = 255
+	let n8 = 067; // số dạng octa (hệ cơ số 8): 6*8 + 7 = 55
+	let n9 = 0b11; // số dạng nhị phân (hệ cơ số 2): 1*2 + 1 = 3
+	```
 5.	Kiểu dữ liệu BigInt <br>
 	Trong JavaScript, kiểu dữ liệu number không thể biểu diễn một số nguyên lớn hơn (2^53-1) (bằng 9007199254740991) và nhỏ hơn -(2^53-1).
 	Với hầu hết các trường hợp, việc sử dụng kiểu dữ liệu number là quá đủ. Nhưng đôi khi, bạn vẫn cần biểu diễn và tính toán với những số nguyên cực kỳ lớn. Do đó, kiểu dữ liệu BigInt ra đời nhằm giải quyết vấn đề này.
 	Để biểu diễn số nguyên với kiểu BigInt
-
-		```JavaScript
-		const reallyBigNumber = 12345678987654321012345678987654321n;
-		console.log(reallyBigNumber); // 12345678987654321012345678987654321n
-		```
+	```JavaScript
+	const reallyBigNumber = 12345678987654321012345678987654321n;
+	console.log(reallyBigNumber); // 12345678987654321012345678987654321n
+	```
 6.	Kiểu dữ liệu string
-		```JavaScript
-		const msg1 = 'Đây là string dùng dấu nháy đơn';
-		const msg2 = "Đây là string dùng dấu nháy kép";
-		const msg3 = `Đây là string dùng dấu backtick`;
-		const msg4 = '1 + 2 = ${1 + 2}';
-		```
+	```JavaScript
+	const msg1 = 'Đây là string dùng dấu nháy đơn';
+	const msg2 = "Đây là string dùng dấu nháy kép";
+	const msg3 = `Đây là string dùng dấu backtick`;
+	const msg4 = '1 + 2 = ${1 + 2}';
+	```
 7.	Kiểu dữ liệu symbol <br>
 		Symbol là một kiểu dữ liệu nguyên thủy dùng để tạo ra các giá trị duy nhất (unique value) và bất biến (immutable). Symbol thường được dùng làm key cho kiểu dữ liệu object sau đây.
 		
