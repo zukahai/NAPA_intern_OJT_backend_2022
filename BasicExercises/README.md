@@ -78,6 +78,15 @@ Callback thường được sử dụng nhiều trong Jquery: <br>
 	})
     ```
     
+
+	Hãy phân tích đoạn code trên: <br>
+	Một promise được khởi tạo với một function có câu lệnh resolve hoặc reject.
+	Đặt đoạn code bất đồng bộ trong function Promise resolve khi mọi thứ xảy ra như mong muốn Nếu không thì reject
+	Khi resolve được chạy thì đoạn code trong .then sẽ thực thi Khi reject được chạy thì .catch sẽ được trigger <br><br>
+
+- Async sẽ thông báo rằng function sẽ xử lý bất đồng bộ, và await sẽ được dùng để báo chúng ta muốn đợi kết quả của thao tác bất đồng bộ trong một function có đánh dấu async.
+    
+    
 ### Câu 3: Callback hell là gì?
 - Callback hell kiểu như đã là mình gọi callback quá nhiều lần, sẽ làm code bị xấu. Ví dụ: <br>
 	```JavaScript
@@ -222,12 +231,3 @@ Callback thường được sử dụng nhiều trong Jquery: <br>
 
 	console.log("obj_2", obj_2); // {username: "HaiZuka", getUsername: ƒ}
  ```
-
-
-	Hãy phân tích đoạn code trên: <br>
-	Một promise được khởi tạo với một function có câu lệnh resolve hoặc reject.
-	Đặt đoạn code bất đồng bộ trong function Promise resolve khi mọi thứ xảy ra như mong muốn Nếu không thì reject
-	Khi resolve được chạy thì đoạn code trong .then sẽ thực thi Khi reject được chạy thì .catch sẽ được trigger <br><br>
-
-- Async sẽ thông báo rằng function sẽ xử lý bất đồng bộ, và await sẽ được dùng để báo chúng ta muốn đợi kết quả của thao tác bất đồng bộ trong một function có đánh dấu async.
-    
